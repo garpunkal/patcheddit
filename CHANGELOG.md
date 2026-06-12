@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/garpunkal/patcheddit/compare/v1.4.0...v1.5.0) (2026-06-12)
+
+
+### Features
+
+* Bump version to 1.4.1 and enhance removal logic for Sync Ultra menu items ([361d7ef](https://github.com/garpunkal/patcheddit/commit/361d7efba74106b2968f118d600e57bacb3857f5))
+
 # [1.4.0](https://github.com/garpunkal/patcheddit/compare/v1.3.0...v1.4.0) (2026-06-12)
 
 
