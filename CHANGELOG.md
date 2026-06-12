@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/garpunkal/patcheddit/compare/v1.1.0...v1.2.0) (2026-06-12)
+
+
+### Features
+
+* Update version to 1.4.3 in gradle.properties, patches-bundle.json, and patches-list.json; refactor RemoveRandomButtonPatch and RemoveRandomNsfwButtonPatch for compatibility ([97d2256](https://github.com/garpunkal/patcheddit/commit/97d2256b231cc4133521ea1438cc901728618527))
+
 # [1.1.0](https://github.com/garpunkal/patcheddit/compare/v1.0.0...v1.1.0) (2026-06-12)
 
 
