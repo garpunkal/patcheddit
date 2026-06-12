@@ -11,35 +11,36 @@ val removeRandomNsfwButtonPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        subredditHeaderMenuInflateNsfwFingerprint.matchAll().forEach { match ->
-            val method = match.method
-            val instructions = method.implementation?.instructions ?: return@forEach
-            val indicesToRemove = mutableSetOf<Int>()
+        val method = subredditHeaderMenuInflateNsfwFingerprint.methodOrNull ?: return@execute
+        val instructions = method.implementation?.instructions ?: return@execute
+        val indicesToRemove = mutableSetOf<Int>()
 
-            // Remove a conservative window around each matched random NSFW action key setup.
-            match.stringMatches
-                .filter { it.string.contains("actionsRandomNsfw", ignoreCase = true) }
-                .forEach { stringMatch ->
-                    val baseIndex = stringMatch.index
-                    for (offset in -10..16) {
-                        val idx = baseIndex + offset
-                        if (idx in 0 until instructions.size) {
-                            indicesToRemove.add(idx)
-                        }
+        // Scan for known random NSFW markers and remove nearby setup instructions.
+        instructions.forEachIndexed { index, instruction ->
+            val value = instruction.toString()
+            if (
+                value.contains("actionsRandomNsfw", ignoreCase = true) ||
+                value.contains("randomNsfw", ignoreCase = true)
+            ) {
+                for (offset in -10..16) {
+                    val idx = index + offset
+                    if (idx in 0 until instructions.size) {
+                        indicesToRemove.add(idx)
                     }
                 }
-
-            indicesToRemove
-                .sortedDescending()
-                .forEach { index ->
-                    if (index < instructions.size) {
-                        try {
-                            instructions.removeAt(index)
-                        } catch (_: Exception) {
-                            // Skip invalid removals and continue patching remaining matches.
-                        }
-                    }
-                }
+            }
         }
+
+        indicesToRemove
+            .sortedDescending()
+            .forEach { index ->
+                if (index < instructions.size) {
+                    try {
+                        instructions.removeAt(index)
+                    } catch (_: Exception) {
+                        // Skip invalid removals and continue patching.
+                    }
+                }
+            }
     }
 }
