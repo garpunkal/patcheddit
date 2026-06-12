@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/garpunkal/patcheddit/compare/v1.5.0...v1.6.0) (2026-06-12)
+
+
+### Features
+
+* Bump version to 1.4.2 and refine logic for removing random and NSFW buttons ([51bc915](https://github.com/garpunkal/patcheddit/commit/51bc9153645356c6236f88b4a3e3b150d6aaec55))
+
 # [1.5.0](https://github.com/garpunkal/patcheddit/compare/v1.4.0...v1.5.0) (2026-06-12)
 
 
