@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-12T10:35:48",
-  "description": "# [1.7.0](https://github.com/garpunkal/patcheddit/compare/v1.6.0...v1.7.0) (2026-06-12)\n\n\n### Features\n\n* Add predictive back gesture support patch ([8920085](https://github.com/garpunkal/patcheddit/commit/8920085878c4e02ec9a0cd0e26c4e43b43a02a71))",
-  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.0/patches-1.7.0.mpp",
-  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.0/patches-1.7.0.mpp.asc",
-  "version": "1.7.0"
+  "created_at": "2026-06-12T11:42:12",
+  "description": "## [1.7.1](https://github.com/garpunkal/patcheddit/compare/v1.7.0...v1.7.1) (2026-06-12)\n\n\n### Bug Fixes\n\n* Add missing newline at end of file in multiple patch files ([7fce719](https://github.com/garpunkal/patcheddit/commit/7fce719e819995205621e18545c92c168b63d81a))",
+  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.1/patches-1.7.1.mpp",
+  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.1/patches-1.7.1.mpp.asc",
+  "version": "1.7.1"
 }

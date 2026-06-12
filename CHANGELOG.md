@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/garpunkal/patcheddit/compare/v1.7.0...v1.7.1) (2026-06-12)
+
+
+### Bug Fixes
+
+* Add missing newline at end of file in multiple patch files ([7fce719](https://github.com/garpunkal/patcheddit/commit/7fce719e819995205621e18545c92c168b63d81a))
+
 # [1.7.0](https://github.com/garpunkal/patcheddit/compare/v1.6.0...v1.7.0) (2026-06-12)
 
 
