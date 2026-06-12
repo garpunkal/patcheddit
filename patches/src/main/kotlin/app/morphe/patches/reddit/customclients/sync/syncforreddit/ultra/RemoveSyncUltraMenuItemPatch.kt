@@ -1,5 +1,6 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
 
@@ -42,11 +43,7 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
                     .sortedDescending()
                     .forEach { index ->
                         if (index < instructions.size) {
-                            try {
-                                instructions.removeAt(index)
-                            } catch (_: Exception) {
-                                // Skip invalid removals and continue patching remaining matches.
-                            }
+                            match.method.removeInstruction(index)
                         }
                     }
             }

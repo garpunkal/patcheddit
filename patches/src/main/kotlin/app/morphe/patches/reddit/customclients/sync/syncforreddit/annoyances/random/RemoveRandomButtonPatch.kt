@@ -1,5 +1,6 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.annoyances.random
 
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
 
@@ -36,11 +37,7 @@ val removeRandomButtonPatch = bytecodePatch(
                 .sortedDescending()
                 .forEach { index ->
                     if (index < instructions.size) {
-                        try {
-                            instructions.removeAt(index)
-                        } catch (_: Exception) {
-                            // Skip invalid removals and continue patching.
-                        }
+                        match.method.removeInstruction(index)
                     }
                 }
         }
