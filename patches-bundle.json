@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-12T11:42:12",
-  "description": "## [1.7.1](https://github.com/garpunkal/patcheddit/compare/v1.7.0...v1.7.1) (2026-06-12)\n\n\n### Bug Fixes\n\n* Add missing newline at end of file in multiple patch files ([7fce719](https://github.com/garpunkal/patcheddit/commit/7fce719e819995205621e18545c92c168b63d81a))",
-  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.1/patches-1.7.1.mpp",
-  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.1/patches-1.7.1.mpp.asc",
-  "version": "1.7.1"
+  "created_at": "2026-06-12T12:19:01",
+  "description": "## [1.7.2](https://github.com/garpunkal/patcheddit/compare/v1.7.1...v1.7.2) (2026-06-12)\n\n\n### Bug Fixes\n\n* Update Sync Ultra and random button fingerprint matching ([1410cfe](https://github.com/garpunkal/patcheddit/commit/1410cfe466ed8401451f4deb1ef2a9c5f237b705))",
+  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.2/patches-1.7.2.mpp",
+  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.2/patches-1.7.2.mpp.asc",
+  "version": "1.7.2"
 }

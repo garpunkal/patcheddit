@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/garpunkal/patcheddit/compare/v1.7.1...v1.7.2) (2026-06-12)
+
+
+### Bug Fixes
+
+* Update Sync Ultra and random button fingerprint matching ([1410cfe](https://github.com/garpunkal/patcheddit/commit/1410cfe466ed8401451f4deb1ef2a9c5f237b705))
+
 ## [1.7.1](https://github.com/garpunkal/patcheddit/compare/v1.7.0...v1.7.1) (2026-06-12)
 
 
