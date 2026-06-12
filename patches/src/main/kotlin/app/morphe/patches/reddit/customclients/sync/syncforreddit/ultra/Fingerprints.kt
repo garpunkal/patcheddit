@@ -1,4 +1,4 @@
-package app.morphe.patches.reddit.customclients.sync.syncforreddit.annoyances.ultra
+package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
 import app.morphe.patcher.Fingerprint
 

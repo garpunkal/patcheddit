@@ -1,18 +1,15 @@
-package app.morphe.patches.reddit.customclients.sync.syncforreddit.annoyances.ultra
+package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
 
 @Suppress("unused")
 val removeSyncUltraMenuItemPatch = bytecodePatch(
     name = "Remove Sync Ultra menu item",
     description = "Removes the 'Sync Ultra' menu item from the app.",
 ) {
-    compatibleWith(
-        "com.laurencedawson.reddit_sync"("v23.06.30-13:39"),
-        "com.laurencedawson.reddit_sync.pro"(),
-        "com.laurencedawson.reddit_sync.dev"(),
-    )
+    compatibleWith(*SyncForRedditCompatible)
 
     execute {
         // Patch the method that sets up the Sync Ultra menu item
