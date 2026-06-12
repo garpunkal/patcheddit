@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/garpunkal/patcheddit/compare/v1.2.0...v1.3.0) (2026-06-12)
+
+
+### Features
+
+* Update patches for compatibility with version 1.4.3; enhance fingerprint matching for random and Sync Ultra menu items ([e6796d9](https://github.com/garpunkal/patcheddit/commit/e6796d9f63eaa1a1ed233a2739015c5d314fe69d))
+
 # [1.2.0](https://github.com/garpunkal/patcheddit/compare/v1.1.0...v1.2.0) (2026-06-12)
 
 
