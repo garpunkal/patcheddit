@@ -1,37 +1,43 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
 import app.morphe.patcher.Fingerprint
+import com.android.tools.smali.dexlib2.iface.ClassDef
 
-// Fingerprint for the method that sets up the Sync Ultra menu item
-internal val syncUltraMenuItemFingerprint = Fingerprint(
-    strings = listOf(
-        "SyncUltra",
-        "syncUltra",
-        "mSyncUltraRow",
-        "ultraPremium",
-        "onUpgradeClicked",
-        "upgrade",
+private fun isLikelyUltraMenuClass(classDef: ClassDef): Boolean {
+    val sourceFile = classDef.sourceFile ?: return false
+    return sourceFile.contains("Main", ignoreCase = true) ||
+        sourceFile.contains("Drawer", ignoreCase = true) ||
+        sourceFile.contains("Menu", ignoreCase = true)
+}
+
+// Candidate fingerprints for methods that set up Sync Ultra menu items.
+internal val syncUltraMenuItemFingerprints = listOf(
+    Fingerprint(
+        strings = listOf("mSyncUltraRow"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
     ),
-    custom = { _, classDef ->
-        classDef.sourceFile?.contains("Main", ignoreCase = true) == true ||
-            classDef.sourceFile?.contains("Drawer", ignoreCase = true) == true ||
-            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
-    }
+    Fingerprint(
+        strings = listOf("ultraPremium"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
+    ),
+    Fingerprint(
+        strings = listOf("SyncUltra"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
+    )
 )
 
-// Fingerprint for the method that sets up the "Get Sync Ultra" sidemenu item
-internal val getSyncUltraMenuItemFingerprint = Fingerprint(
-    strings = listOf(
-        "mUpgradeRow",
-        "mSyncUltraRow",
-        "onUpgradeClicked",
-        "getSync",
-        "ultraRow",
-        "upgrade",
+// Candidate fingerprints for methods that set up the "Get Sync Ultra" sidemenu item.
+internal val getSyncUltraMenuItemFingerprints = listOf(
+    Fingerprint(
+        strings = listOf("mUpgradeRow"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
     ),
-    custom = { _, classDef ->
-        classDef.sourceFile?.contains("Main", ignoreCase = true) == true ||
-            classDef.sourceFile?.contains("Drawer", ignoreCase = true) == true ||
-            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
-    }
+    Fingerprint(
+        strings = listOf("onUpgradeClicked"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
+    ),
+    Fingerprint(
+        strings = listOf("getSync"),
+        custom = { _, classDef -> isLikelyUltraMenuClass(classDef) }
+    )
 )
