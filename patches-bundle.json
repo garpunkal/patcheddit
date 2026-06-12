@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-01-20T02:32:54",
-  "description": "# [1.2.0](https://github.com/wchill/patcheddit/compare/v1.1.0...v1.2.0) (2026-01-20)\n\n\n### Bug Fixes\n\n* Fix broken Sync for Reddit ad removal patch ([673825c](https://github.com/wchill/patcheddit/commit/673825c91cca62c6596c0709a8886b9c5672385f))\n* Remove Infinity for Reddit patches (use Continuum for Reddit instead) ([32e92a0](https://github.com/wchill/patcheddit/commit/32e92a07ed33696ee2c92c51eb2f916420803f48))\n\n\n### Features\n\n* Add client ID patching support for Continuum for Reddit ([#16](https://github.com/wchill/patcheddit/issues/16)) ([32e5408](https://github.com/wchill/patcheddit/commit/32e5408fadc61503d4a528828474f4aeb514fbdc))\n* Add client ID patching support for Slide for Reddit fork ([#18](https://github.com/wchill/patcheddit/issues/18)) ([cf0f0f1](https://github.com/wchill/patcheddit/commit/cf0f0f18f984c9ad367f790fca7203325ed29d25))\n* Add support for /s/ links in Relay ([#21](https://github.com/wchill/patcheddit/issues/21)) ([eb0ba9b](https://github.com/wchill/patcheddit/commit/eb0ba9b08b8e45ca31a03a3354e82ebc3eed9987))",
-  "download_url": "https://github.com/wchill/patcheddit/releases/download/v1.2.0/patches-1.2.0.mpp",
-  "signature_download_url": "https://github.com/wchill/patcheddit/releases/download/v1.2.0/patches-1.2.0.mpp.asc",
-  "version": "1.2.0"
+  "created_at": "2026-04-07T19:10:35",
+  "description": "# [1.4.0](https://github.com/wchill/patcheddit/compare/v1.3.1...v1.4.0) (2026-04-07)\n\n\n### Bug Fixes\n\n* Don't show fake premium patch for reddit is fun golden platinum ([15d372e](https://github.com/wchill/patcheddit/commit/15d372e09cd36252483cf468a7d0a09188d2d4d1))\n* Make /r/all patch available ([9740e3d](https://github.com/wchill/patcheddit/commit/9740e3d2ba1c67ae5ba7247f992f3724e8837dbe))\n* reddit is fun imgur album loading ([66c73c9](https://github.com/wchill/patcheddit/commit/66c73c969acbbfa038d52cd020533eb39f95f224))\n\n\n### Features\n\n* /r/all patch for Boost ([60b8743](https://github.com/wchill/patcheddit/commit/60b8743b6fe47aea55fe10d87124b416d692c355))\n* Add experimental patch to help resolve some login issues ([3a1025e](https://github.com/wchill/patcheddit/commit/3a1025e0370e9d7f5f5f0c8a5f4202e81f434979))",
+  "download_url": "https://github.com/wchill/patcheddit/releases/download/v1.4.0/patches-1.4.0.mpp",
+  "signature_download_url": "https://github.com/wchill/patcheddit/releases/download/v1.4.0/patches-1.4.0.mpp.asc",
+  "version": "1.4.0"
 }

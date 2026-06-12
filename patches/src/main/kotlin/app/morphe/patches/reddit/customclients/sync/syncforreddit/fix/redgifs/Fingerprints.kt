@@ -1,3 +1,10 @@
+/*
+ * Copyright 2026 wchill.
+ * https://github.com/wchill/patcheddit
+ *
+ * See the included NOTICE file for GPLv3 §7(b) and §7(c) terms that apply to this code.
+ */
+
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.fix.redgifs
 
 import app.morphe.patcher.Fingerprint
@@ -26,9 +33,8 @@ internal val createOkHttpClientFingerprint = Fingerprint(
 )
 
 internal val getDefaultUserAgentFingerprint = Fingerprint(
-    custom = { method, classDef ->
-        method.name == "getDefaultUserAgent" && classDef.type == EXTENSION_CLASS_DESCRIPTOR
-    }
+    definingClass = EXTENSION_CLASS_DESCRIPTOR,
+    name = "getDefaultUserAgent",
 )
 
 internal val getOriginalUserAgentFingerprint = Fingerprint(

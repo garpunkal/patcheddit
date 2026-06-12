@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.4.0",
   "patches": [
     {
       "name": "Add archive links to context menu",
@@ -46,44 +46,6 @@
       "options": []
     },
     {
-      "name": "Change package name",
-      "description": "Appends \".morphe\" to the package name by default. Changing the package name of the app can lead to unexpected issues.",
-      "use": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "packageName",
-          "title": "Package name",
-          "description": "The name of the package to rename the app to.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "Default",
-          "values": {
-            "Default": "Default"
-          }
-        },
-        {
-          "key": "updatePermissions",
-          "title": "Update permissions",
-          "description": "Update compatibility receiver permissions. Enabling this can fix installation errors, but this can also break features in certain apps.",
-          "required": false,
-          "type": "kotlin.Boolean",
-          "default": false,
-          "values": null
-        },
-        {
-          "key": "updateProviders",
-          "title": "Update providers",
-          "description": "Update provider names declared by the app. Enabling this can fix installation errors, but this can also break features in certain apps.",
-          "required": false,
-          "type": "kotlin.Boolean",
-          "default": false,
-          "values": null
-        }
-      ]
-    },
-    {
       "name": "Disable Sync for Lemmy bottom sheet",
       "description": "Disables the bottom sheet at the startup that asks you to signup to \"Sync for Lemmy\".",
       "use": true,
@@ -92,8 +54,8 @@
         "com.laurencedawson.reddit_sync": [
           "v23.06.30-13:39"
         ],
-        "com.laurencedawson.reddit_sync.pro": [],
-        "com.laurencedawson.reddit_sync.dev": []
+        "com.laurencedawson.reddit_sync.pro": null,
+        "com.laurencedawson.reddit_sync.dev": null
       },
       "options": []
     },
@@ -129,7 +91,7 @@
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null
+        "io.syncapps.lemmy_sync": null
       },
       "options": []
     },
@@ -139,18 +101,18 @@
       "use": true,
       "dependencies": [],
       "compatiblePackages": {
-        "io.syncapps.lemmy_sync": null
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ]
       },
       "options": []
     },
     {
-      "name": "Disable screenshot popup",
-      "description": "Disables the popup that shows up when taking a screenshot.",
-      "use": true,
+      "name": "Enable Android debugging",
+      "description": "Enables Android developer debugging capabilities. Including this patch can slow down the app.",
+      "use": false,
       "dependencies": [],
-      "compatiblePackages": {
-        "com.reddit.frontpage": null
-      },
+      "compatiblePackages": null,
       "options": []
     },
     {
@@ -161,6 +123,21 @@
       "compatiblePackages": {
         "com.andrewshu.android.reddit": [
           "5.6.22"
+        ]
+      },
+      "options": []
+    },
+    {
+      "name": "Fix /r/all",
+      "description": null,
+      "use": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "com.rubenmayayo.reddit": [
+          "1.12.12"
         ]
       },
       "options": []
@@ -184,7 +161,6 @@
       "description": null,
       "use": true,
       "dependencies": [
-        "BytecodePatch",
         "BytecodePatch"
       ],
       "compatiblePackages": {
@@ -205,7 +181,9 @@
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
       },
@@ -216,11 +194,16 @@
       "description": null,
       "use": true,
       "dependencies": [
+        "BytecodePatch",
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.onelouder.baconreader": null,
-        "com.onelouder.baconreader.premium": null
+        "com.onelouder.baconreader": [
+          "6.1.4"
+        ],
+        "com.onelouder.baconreader.premium": [
+          "6.1.4"
+        ]
       },
       "options": []
     },
@@ -229,6 +212,8 @@
       "description": null,
       "use": true,
       "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
         "BytecodePatch"
       ],
       "compatiblePackages": {
@@ -243,10 +228,13 @@
       "description": null,
       "use": true,
       "dependencies": [
+        "BytecodePatch",
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
       },
@@ -273,7 +261,9 @@
       "use": true,
       "dependencies": [],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
       },
@@ -287,25 +277,11 @@
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
-      },
-      "options": []
-    },
-    {
-      "name": "Hide ads",
-      "description": null,
-      "use": true,
-      "dependencies": [
-        "ResourcePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
-      "compatiblePackages": {
-        "com.reddit.frontpage": [
-          "2024.17.0"
-        ]
       },
       "options": []
     },
@@ -324,8 +300,25 @@
       "options": []
     },
     {
-      "name": "Intercept HTTP requests",
-      "description": null,
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "com.onelouder.baconreader": [
+          "6.1.4"
+        ],
+        "com.onelouder.baconreader.premium": [
+          "6.1.4"
+        ]
+      },
+      "options": []
+    },
+    {
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
       "use": true,
       "dependencies": [
         "BytecodePatch"
@@ -338,12 +331,79 @@
       "options": []
     },
     {
-      "name": "Sanitize sharing links",
-      "description": "Removes the tracking query parameters from shared links.",
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
       "use": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": {
-        "com.reddit.frontpage": null
+        "ml.docilealligator.infinityforreddit.plus": null,
+        "ml.docilealligator.infinityforreddit.patreon": null
+      },
+      "options": []
+    },
+    {
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "o.o.joey": null,
+        "o.o.joey.pro": null,
+        "o.o.joey.dev": null
+      },
+      "options": []
+    },
+    {
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "com.andrewshu.android.reddit": [
+          "5.6.22"
+        ],
+        "com.andrewshu.android.redditdonation": [
+          "5.6.22"
+        ]
+      },
+      "options": []
+    },
+    {
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "free.reddit.news": [
+          "10.2.40"
+        ],
+        "reddit.news": [
+          "10.2.40"
+        ]
+      },
+      "options": []
+    },
+    {
+      "name": "Modify login WebView",
+      "description": "Modify the WebView used for logging into reddit to prevent login issues",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": {
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
+        "com.laurencedawson.reddit_sync.pro": null,
+        "com.laurencedawson.reddit_sync.dev": null
       },
       "options": []
     },
@@ -355,15 +415,19 @@
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.onelouder.baconreader": null,
-        "com.onelouder.baconreader.premium": null
+        "com.onelouder.baconreader": [
+          "6.1.4"
+        ],
+        "com.onelouder.baconreader.premium": [
+          "6.1.4"
+        ]
       },
       "options": [
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -371,19 +435,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -402,8 +466,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -411,19 +475,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -433,10 +497,8 @@
       "description": "Allows modifying Continuum's client ID, redirect URI and user agent in API Keys settings menu. Patch options will modify default values.",
       "use": true,
       "dependencies": [
-        "ResourcePatch",
         "BytecodePatch",
-        "ResourcePatch",
-        "BytecodePatch"
+        "ResourcePatch"
       ],
       "compatiblePackages": {
         "org.cygnusx1.continuum": null
@@ -445,8 +507,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -454,19 +516,62 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "org.quantumbadger.redreader/1.25.1",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Spoof client",
+      "description": "Restores functionality of the app by using custom client ID.",
+      "use": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
+        "ResourcePatch"
+      ],
+      "compatiblePackages": {
+        "ml.docilealligator.infinityforreddit.plus": null,
+        "ml.docilealligator.infinityforreddit.patreon": null
+      },
+      "options": [
+        {
+          "key": "client-id",
+          "title": "OAuth client ID",
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
+          "values": null
+        },
+        {
+          "key": "redirect-uri",
+          "title": "Redirect URI",
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "redreader://rr_oauth_redir",
+          "values": null
+        },
+        {
+          "key": "user-agent",
+          "title": "User agent",
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -487,8 +592,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -496,19 +601,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -521,14 +626,17 @@
       "compatiblePackages": {
         "com.andrewshu.android.reddit": [
           "5.6.22"
+        ],
+        "com.andrewshu.android.redditdonation": [
+          "5.6.22"
         ]
       },
       "options": [
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -536,19 +644,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -570,8 +678,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -579,19 +687,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -601,7 +709,6 @@
       "description": "Allows modifying Slide's client ID, redirect URI and user agent in settings. Patch options will modify default values.",
       "use": true,
       "dependencies": [
-        "BytecodePatch",
         "BytecodePatch"
       ],
       "compatiblePackages": {
@@ -611,8 +718,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -620,19 +727,19 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
@@ -646,7 +753,9 @@
         "BytecodePatch"
       ],
       "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
       },
@@ -654,8 +763,8 @@
         {
           "key": "client-id",
           "title": "OAuth client ID",
-          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing client ID.",
-          "required": false,
+          "description": "The Reddit OAuth client ID. Refer to Patcheddit documentation for more information on what to put here.",
+          "required": true,
           "type": "kotlin.String",
           "default": null,
           "values": null
@@ -663,40 +772,32 @@
         {
           "key": "redirect-uri",
           "title": "Redirect URI",
-          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing redirect URI.",
-          "required": false,
+          "description": "The Reddit OAuth redirect URI. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's redirect URI.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "redreader://rr_oauth_redir",
           "values": null
         },
         {
           "key": "user-agent",
           "title": "User agent",
-          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. An empty value keeps the app's existing user agent.",
-          "required": false,
+          "description": "The app's user agent. Refer to Patcheddit documentation for more information on what to put here. Default value is RedReader's user agent.",
+          "required": true,
           "type": "kotlin.String",
-          "default": null,
+          "default": "org.quantumbadger.redreader/1.25.1",
           "values": null
         }
       ]
     },
     {
-      "name": "Unlock Premium icons",
-      "description": "Unlocks the Reddit Premium icons.",
+      "name": "Use /user/ endpoint",
+      "description": "Replaces the deprecated endpoint for viewing user profiles /u with /user, that used to fix a bug.",
       "use": true,
       "dependencies": [],
       "compatiblePackages": {
-        "com.reddit.frontpage": null
-      },
-      "options": []
-    },
-    {
-      "name": "Use /user/ endpoint",
-      "description": "Replaces the deprecated endpoint for viewing user profiles /u with /user, that used to fix a bug.",
-      "use": false,
-      "dependencies": [],
-      "compatiblePackages": {
-        "com.laurencedawson.reddit_sync": null,
+        "com.laurencedawson.reddit_sync": [
+          "v23.06.30-13:39"
+        ],
         "com.laurencedawson.reddit_sync.pro": null,
         "com.laurencedawson.reddit_sync.dev": null
       },
@@ -711,6 +812,9 @@
       ],
       "compatiblePackages": {
         "com.andrewshu.android.reddit": [
+          "5.6.22"
+        ],
+        "com.andrewshu.android.redditdonation": [
           "5.6.22"
         ]
       },

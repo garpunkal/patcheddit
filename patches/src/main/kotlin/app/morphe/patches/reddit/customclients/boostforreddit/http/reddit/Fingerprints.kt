@@ -1,10 +1,18 @@
+/*
+ * Copyright 2026 wchill.
+ * https://github.com/wchill/patcheddit
+ *
+ * See the included NOTICE file for GPLv3 §7(b) and §7(c) terms that apply to this code.
+ */
+
 package app.morphe.patches.reddit.customclients.boostforreddit.http.reddit
 
 import app.morphe.patcher.Fingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
 internal val installJrawInterceptorFingerprint = Fingerprint(
-    custom = { method, _ -> method.name == "newOkHttpClient" && method.definingClass == "Lnet/dean/jraw/http/OkHttpAdapter;" }
+    definingClass = "Lnet/dean/jraw/http/OkHttpAdapter;",
+    name = "newOkHttpClient",
 )
 
 // Lcom/rubenmayayo/reddit/ui/adapters/CommentViewHolder;->O(Lcom/rubenmayayo/reddit/models/reddit/CommentModel;
@@ -24,15 +32,16 @@ internal val setSubmissionBabushkaTextFingerprint = Fingerprint(
 )
 
 internal val contributionModelConstructorFingerprint = Fingerprint(
+    definingClass = "Lcom/rubenmayayo/reddit/models/reddit/ContributionModel;",
     accessFlags = listOf(AccessFlags.PROTECTED, AccessFlags.CONSTRUCTOR),
     returnType = "V",
-    custom = { method, _ -> method.definingClass == "Lcom/rubenmayayo/reddit/models/reddit/ContributionModel;" }
 )
 
 internal val contributionModelWriteToParcelFingerprint = Fingerprint(
+    definingClass = "Lcom/rubenmayayo/reddit/models/reddit/ContributionModel;",
+    name = "writeToParcel",
     accessFlags = listOf(AccessFlags.PUBLIC),
     returnType = "V",
-    custom = { method, _ -> method.name == "writeToParcel" && method.definingClass == "Lcom/rubenmayayo/reddit/models/reddit/ContributionModel;" }
 )
 
 internal val submissionModelDeserializeFingerprint = Fingerprint(
@@ -48,19 +57,22 @@ internal val commentModelDeserializeFingerprint = Fingerprint(
 )
 
 internal val stateSubmissionViewGetHeaderFingerprint = Fingerprint(
+    definingClass = "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;",
+    name = "a",
     accessFlags = listOf(AccessFlags.PRIVATE),
     strings = listOf("copyright_takedown", "reddit"),
-    custom = { method, _ -> method.name == "a" && method.definingClass == "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;" }
 )
 
 internal val stateSubmissionViewGetSummaryFingerprint = Fingerprint(
+    definingClass = "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;",
+    name = "b",
     accessFlags = listOf(AccessFlags.PRIVATE),
     strings = listOf("copyright_takedown", "reddit"),
-    custom = { method, _ -> method.name == "b" && method.definingClass == "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;" }
 )
 
 internal val stateSubmissionViewHasValidRemovalReasonFingerprint = Fingerprint(
+    definingClass = "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;",
+    name = "d",
     accessFlags = listOf(AccessFlags.PRIVATE),
     strings = listOf("reddit"),
-    custom = { method, _ -> method.name == "d" && method.definingClass == "Lcom/rubenmayayo/reddit/ui/customviews/StateSubmissionView;" }
 )
