@@ -1,6 +1,5 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
 
@@ -12,52 +11,40 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        val targetMethod = syncUltraMenuItemFingerprint.methodOrNull ?: return@execute
+        syncUltraMenuItemFingerprint.matchAll().forEach { match ->
+            val method = match.method
+            val instructions = method.implementation?.instructions ?: return@forEach
+            val indicesToRemove = mutableSetOf<Int>()
 
-        // Patch the method that sets up the Sync Ultra menu item
-        targetMethod.apply {
-            val instructions = implementation!!.instructions
-            
-            // Find all instructions related to Sync Ultra menu setup and remove them
-            val indicesToRemove = mutableListOf<Int>()
-            
-            instructions.forEachIndexed { index, instruction ->
-                val instructionStr = instruction.toString()
-                
-                // Look for const string instructions with "Sync Ultra" or related strings
-                if (instructionStr.contains("SyncUltra", ignoreCase = true) ||
-                    instructionStr.contains("ultraPremium", ignoreCase = true) ||
-                    instructionStr.contains("syncUltra", ignoreCase = true)) {
-                    // Mark this instruction and potentially surrounding ones for removal
-                    indicesToRemove.add(index)
-                    
-                    // Also check for menu add/setup patterns around this
-                    for (offset in -2..2) {
-                        val checkIdx = index + offset
-                        if (checkIdx in 0 until instructions.size) {
-                            val checkInstr = instructions[checkIdx].toString()
-                            if (checkInstr.contains("setOnMenuItemClickListener") ||
-                                checkInstr.contains("add(") ||
-                                checkInstr.contains("invoke")) {
-                                if (checkIdx !in indicesToRemove) {
-                                    indicesToRemove.add(checkIdx)
-                                }
-                            }
+            // Remove a conservative window around each matched Sync Ultra key setup.
+            match.stringMatches
+                .filter {
+                    val value = it.string
+                    value.contains("syncUltra", ignoreCase = true) ||
+                        value.contains("ultraPremium", ignoreCase = true) ||
+                        value.contains("mSyncUltraRow", ignoreCase = true)
+                }
+                .forEach { stringMatch ->
+                    val baseIndex = stringMatch.index
+                    for (offset in -10..20) {
+                        val idx = baseIndex + offset
+                        if (idx in 0 until instructions.size) {
+                            indicesToRemove.add(idx)
                         }
                     }
                 }
-            }
-            
-            // Remove in reverse order to maintain valid indices
-            indicesToRemove.distinct().sortedByDescending { it }.forEach { index ->
-                if (index < instructions.size) {
-                    try {
-                        instructions.removeAt(index)
-                    } catch (e: Exception) {
-                        // Silently skip if removal fails
+
+            indicesToRemove
+                .sortedDescending()
+                .forEach { index ->
+                    if (index < instructions.size) {
+                        try {
+                            instructions.removeAt(index)
+                        } catch (_: Exception) {
+                            // Skip invalid removals and continue patching remaining matches.
+                        }
                     }
                 }
-            }
         }
     }
 }

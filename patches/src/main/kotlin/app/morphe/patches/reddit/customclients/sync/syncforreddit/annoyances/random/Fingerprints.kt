@@ -5,19 +5,27 @@ import app.morphe.patcher.Fingerprint
 // Fingerprint for the method that sets up the subreddit toolbar actions/menu
 // This method typically inflates the menu and adds action items for random button
 internal val subredditHeaderMenuInflateFingerprint = Fingerprint(
-    strings = listOf("actionsRandom"),
-    custom = { method, _ ->
-        // Target methods that set up the subreddit header menu/toolbar
-        // Could be onCreate, onCreateMenu, onOptionsItemSelected, etc.
-        true // Accept any method containing the "actionsRandom" string
+    strings = listOf(
+        "actionsRandom",
+        "random",
+    ),
+    custom = { _, classDef ->
+        // Avoid matching generic generated classes where these strings may also appear.
+        classDef.sourceFile?.contains("Subreddit", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Toolbar", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
     }
 )
 
 // Fingerprint for the method that sets up the random NSFW button
 internal val subredditHeaderMenuInflateNsfwFingerprint = Fingerprint(
-    strings = listOf("actionsRandomNsfw"),
-    custom = { method, _ ->
-        // Target methods that set up the subreddit header menu/toolbar
-        true // Accept any method containing the "actionsRandomNsfw" string
+    strings = listOf(
+        "actionsRandomNsfw",
+        "nsfw",
+    ),
+    custom = { _, classDef ->
+        classDef.sourceFile?.contains("Subreddit", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Toolbar", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
     }
 )

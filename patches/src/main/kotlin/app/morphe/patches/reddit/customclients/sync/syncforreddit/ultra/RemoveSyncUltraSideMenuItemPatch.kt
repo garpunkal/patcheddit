@@ -1,6 +1,5 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
 
@@ -12,53 +11,41 @@ val removeSyncUltraSideMenuItemPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        val targetMethod = getSyncUltraMenuItemFingerprint.methodOrNull ?: return@execute
+        getSyncUltraMenuItemFingerprint.matchAll().forEach { match ->
+            val method = match.method
+            val instructions = method.implementation?.instructions ?: return@forEach
+            val indicesToRemove = mutableSetOf<Int>()
 
-        // Patch the method that sets up the Sync Ultra sidemenu item
-        targetMethod.apply {
-            val instructions = implementation!!.instructions
-            
-            // Find all instructions related to "Get Sync Ultra" sidemenu setup and remove them
-            val indicesToRemove = mutableListOf<Int>()
-            
-            instructions.forEachIndexed { index, instruction ->
-                val instructionStr = instruction.toString()
-                
-                // Look for string references to "Get Sync Ultra" or upgrade/premium related strings
-                if (instructionStr.contains("mUpgradeRow", ignoreCase = true) ||
-                    instructionStr.contains("getSync", ignoreCase = true) ||
-                    instructionStr.contains("ultraRow", ignoreCase = true) ||
-                    instructionStr.contains("onUpgradeClicked", ignoreCase = true)) {
-                    // Mark this instruction and potentially surrounding ones for removal
-                    indicesToRemove.add(index)
-                    
-                    // Also check for sidemenu add/setup patterns around this
-                    for (offset in -2..2) {
-                        val checkIdx = index + offset
-                        if (checkIdx in 0 until instructions.size) {
-                            val checkInstr = instructions[checkIdx].toString()
-                            if (checkInstr.contains("setOnClickListener") ||
-                                checkInstr.contains("add(") ||
-                                checkInstr.contains("invoke")) {
-                                if (checkIdx !in indicesToRemove) {
-                                    indicesToRemove.add(checkIdx)
-                                }
-                            }
+            // Remove a conservative window around each matched upgrade/sidemenu key setup.
+            match.stringMatches
+                .filter {
+                    val value = it.string
+                    value.contains("mUpgradeRow", ignoreCase = true) ||
+                        value.contains("mSyncUltraRow", ignoreCase = true) ||
+                        value.contains("onUpgradeClicked", ignoreCase = true) ||
+                        value.contains("getSync", ignoreCase = true)
+                }
+                .forEach { stringMatch ->
+                    val baseIndex = stringMatch.index
+                    for (offset in -10..20) {
+                        val idx = baseIndex + offset
+                        if (idx in 0 until instructions.size) {
+                            indicesToRemove.add(idx)
                         }
                     }
                 }
-            }
-            
-            // Remove in reverse order to maintain valid indices
-            indicesToRemove.distinct().sortedByDescending { it }.forEach { index ->
-                if (index < instructions.size) {
-                    try {
-                        instructions.removeAt(index)
-                    } catch (e: Exception) {
-                        // Silently skip if removal fails
+
+            indicesToRemove
+                .sortedDescending()
+                .forEach { index ->
+                    if (index < instructions.size) {
+                        try {
+                            instructions.removeAt(index)
+                        } catch (_: Exception) {
+                            // Skip invalid removals and continue patching remaining matches.
+                        }
                     }
                 }
-            }
         }
     }
 }

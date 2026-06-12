@@ -10,10 +10,12 @@ internal val syncUltraMenuItemFingerprint = Fingerprint(
         "mSyncUltraRow",
         "ultraPremium",
         "onUpgradeClicked",
+        "upgrade",
     ),
-    custom = { method, _ ->
-        // Target methods that set up the Sync Ultra menu item
-        true // Accept any method containing Sync Ultra related strings
+    custom = { _, classDef ->
+        classDef.sourceFile?.contains("Main", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Drawer", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
     }
 )
 
@@ -25,9 +27,11 @@ internal val getSyncUltraMenuItemFingerprint = Fingerprint(
         "onUpgradeClicked",
         "getSync",
         "ultraRow",
+        "upgrade",
     ),
-    custom = { method, _ ->
-        // Target methods that set up the sidemenu items
-        true // Accept any method containing upgrade/sidemenu row setup
+    custom = { _, classDef ->
+        classDef.sourceFile?.contains("Main", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Drawer", ignoreCase = true) == true ||
+            classDef.sourceFile?.contains("Menu", ignoreCase = true) == true
     }
 )
