@@ -11,33 +11,38 @@ val removeRandomButtonPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        val method = subredditHeaderMenuInflateFingerprint.methodOrNull ?: return@execute
-        val instructions = method.implementation?.instructions ?: return@execute
-        val indicesToRemove = mutableSetOf<Int>()
-
-        // Scan for known random markers and remove nearby setup instructions.
-        instructions.forEachIndexed { index, instruction ->
-            val value = instruction.toString()
-            if (value.contains("actionsRandom", ignoreCase = true)) {
-                for (offset in -10..16) {
-                    val idx = index + offset
-                    if (idx in 0 until instructions.size) {
-                        indicesToRemove.add(idx)
-                    }
-                }
-            }
+        val matches = try {
+            subredditHeaderMenuInflateFingerprint.matchAll()
+        } catch (_: Exception) {
+            emptyList()
         }
 
-        indicesToRemove
-            .sortedDescending()
-            .forEach { index ->
-                if (index < instructions.size) {
-                    try {
-                        instructions.removeAt(index)
-                    } catch (_: Exception) {
-                        // Skip invalid removals and continue patching.
+        matches.forEach { match ->
+            val instructions = match.method.implementation?.instructions ?: return@forEach
+            val indicesToRemove = mutableSetOf<Int>()
+
+            match.stringMatches
+                .filter { it.string.contains("actionsRandom", ignoreCase = true) }
+                .forEach { stringMatch ->
+                    for (offset in -10..16) {
+                        val idx = stringMatch.index + offset
+                        if (idx in 0 until instructions.size) {
+                            indicesToRemove.add(idx)
+                        }
                     }
                 }
-            }
+
+            indicesToRemove
+                .sortedDescending()
+                .forEach { index ->
+                    if (index < instructions.size) {
+                        try {
+                            instructions.removeAt(index)
+                        } catch (_: Exception) {
+                            // Skip invalid removals and continue patching.
+                        }
+                    }
+                }
+        }
     }
 }
