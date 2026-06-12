@@ -1,10 +1,8 @@
 package app.morphe.patches.reddit.customclients.sync.syncforreddit.ultra
 
-import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
-import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patches.reddit.customclients.sync.SyncForRedditCompatible
-import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 @Suppress("unused")
 val removeSyncUltraMenuItemPatch = bytecodePatch(
@@ -22,6 +20,9 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
             }
 
             matches.forEach { match ->
+                val instructions = match.method.implementation?.instructions ?: return@forEach
+                val indicesToRemove = mutableSetOf<Int>()
+
                 match.stringMatches
                     .filter {
                         val value = it.string
@@ -30,16 +31,19 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
                             value.contains("mSyncUltraRow", ignoreCase = true)
                     }
                     .forEach { stringMatch ->
-                        runCatching {
-                            val register =
-                                match.method
-                                    .getInstruction<OneRegisterInstruction>(stringMatch.index)
-                                    .registerA
-                            val replacement = "__morphe_removed_${stringMatch.string}__"
-                            match.method.replaceInstruction(
-                                stringMatch.index,
-                                "const-string v$register, \"$replacement\"",
-                            )
+                        for (offset in -10..20) {
+                            val idx = stringMatch.index + offset
+                            if (idx in 0 until instructions.size) {
+                                indicesToRemove.add(idx)
+                            }
+                        }
+                    }
+
+                indicesToRemove
+                    .sortedDescending()
+                    .forEach { index ->
+                        if (index < instructions.size) {
+                            match.method.removeInstruction(index)
                         }
                     }
             }
