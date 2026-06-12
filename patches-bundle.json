@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-12T10:28:14",
-  "description": "# [1.6.0](https://github.com/garpunkal/patcheddit/compare/v1.5.0...v1.6.0) (2026-06-12)\n\n\n### Features\n\n* Bump version to 1.4.2 and refine logic for removing random and NSFW buttons ([51bc915](https://github.com/garpunkal/patcheddit/commit/51bc9153645356c6236f88b4a3e3b150d6aaec55))",
-  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.6.0/patches-1.6.0.mpp",
-  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.6.0/patches-1.6.0.mpp.asc",
-  "version": "1.6.0"
+  "created_at": "2026-06-12T10:35:48",
+  "description": "# [1.7.0](https://github.com/garpunkal/patcheddit/compare/v1.6.0...v1.7.0) (2026-06-12)\n\n\n### Features\n\n* Add predictive back gesture support patch ([8920085](https://github.com/garpunkal/patcheddit/commit/8920085878c4e02ec9a0cd0e26c4e43b43a02a71))",
+  "download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.0/patches-1.7.0.mpp",
+  "signature_download_url": "https://github.com/garpunkal/patcheddit/releases/download/v1.7.0/patches-1.7.0.mpp.asc",
+  "version": "1.7.0"
 }

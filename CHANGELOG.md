@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/garpunkal/patcheddit/compare/v1.6.0...v1.7.0) (2026-06-12)
+
+
+### Features
+
+* Add predictive back gesture support patch ([8920085](https://github.com/garpunkal/patcheddit/commit/8920085878c4e02ec9a0cd0e26c4e43b43a02a71))
+
 # [1.6.0](https://github.com/garpunkal/patcheddit/compare/v1.5.0...v1.6.0) (2026-06-12)
 
 
