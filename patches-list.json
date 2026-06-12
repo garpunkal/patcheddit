@@ -116,6 +116,14 @@
       "options": []
     },
     {
+      "name": "Enable predictive back gesture",
+      "description": "Enables Android predictive back gesture support via AndroidManifest metadata.",
+      "use": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Fake reddit premium",
       "description": "Allows using pro features without ads.",
       "use": true,
