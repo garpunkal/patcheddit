@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/garpunkal/patcheddit/compare/v1.3.0...v1.4.0) (2026-06-12)
+
+
+### Features
+
+* Update Sync Ultra menu item fingerprints and patch logic for improved removal functionality ([a451526](https://github.com/garpunkal/patcheddit/commit/a4515262f91814e2d344bbc1090b86e295a9e368))
+
 # [1.3.0](https://github.com/garpunkal/patcheddit/compare/v1.2.0...v1.3.0) (2026-06-12)
 
 
