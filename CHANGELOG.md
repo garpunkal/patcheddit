@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/garpunkal/patcheddit/compare/v1.0.0...v1.1.0) (2026-06-12)
+
+
+### Features
+
+* Update version to 1.4.2 and enhance Sync Ultra menu item removal patches ([b513266](https://github.com/garpunkal/patcheddit/commit/b513266d330577cf5f941a342ae8b690c4c6a1ee))
+* Update version to 1.4.2 in gradle.properties, patches-bundle.json, and patches-list.json ([b4181e7](https://github.com/garpunkal/patcheddit/commit/b4181e714e1a9e1b3e0fc274faf9f135b6c40a43))
+
 # 1.0.0 (2026-06-12)
 
 
