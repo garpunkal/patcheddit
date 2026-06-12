@@ -15,6 +15,12 @@ internal val syncUltraMenuItemFingerprints = listOf(
     ),
     Fingerprint(
         strings = listOf("Sync Ultra")
+    ),
+    Fingerprint(
+        strings = listOf("sync_ultra")
+    ),
+    Fingerprint(
+        strings = listOf("Upgrade to Ultra")
     )
 )
 
@@ -31,5 +37,11 @@ internal val getSyncUltraMenuItemFingerprints = listOf(
     ),
     Fingerprint(
         strings = listOf("Get Sync Ultra")
+    ),
+    Fingerprint(
+        strings = listOf("upgradeToUltra")
+    ),
+    Fingerprint(
+        strings = listOf("Upgrade to Ultra")
     )
 )

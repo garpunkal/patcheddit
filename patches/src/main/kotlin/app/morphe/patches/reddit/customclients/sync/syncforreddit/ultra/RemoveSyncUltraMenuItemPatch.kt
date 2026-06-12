@@ -27,8 +27,11 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
                     .filter {
                         val value = it.string
                         value.contains("syncUltra", ignoreCase = true) ||
+                            value.contains("sync ultra", ignoreCase = true) ||
+                            value.contains("sync_ultra", ignoreCase = true) ||
                             value.contains("ultraPremium", ignoreCase = true) ||
-                            value.contains("mSyncUltraRow", ignoreCase = true)
+                            value.contains("mSyncUltraRow", ignoreCase = true) ||
+                            value.contains("upgrade to ultra", ignoreCase = true)
                     }
                     .forEach { stringMatch ->
                         for (offset in -10..20) {

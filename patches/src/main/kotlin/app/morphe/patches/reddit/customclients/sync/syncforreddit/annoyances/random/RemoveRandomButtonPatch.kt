@@ -26,8 +26,8 @@ val removeRandomButtonPatch = bytecodePatch(
                 match.stringMatches
                     .filter {
                         val value = it.string
-                        value.contains("actionsRandom", ignoreCase = true) ||
-                            value.equals("Random", ignoreCase = true)
+                        value.contains("random", ignoreCase = true) &&
+                            !value.contains("nsfw", ignoreCase = true)
                     }
                     .forEach { stringMatch ->
                         for (offset in -10..16) {
