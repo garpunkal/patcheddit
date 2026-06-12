@@ -12,34 +12,40 @@ val removeRandomNsfwButtonPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        val matches = try {
-            subredditHeaderMenuInflateNsfwFingerprint.matchAll()
-        } catch (_: Exception) {
-            emptyList()
-        }
+        subredditHeaderMenuInflateNsfwFingerprints.forEach { fingerprint ->
+            val matches = try {
+                fingerprint.matchAll()
+            } catch (_: Exception) {
+                emptyList()
+            }
 
-        matches.forEach { match ->
-            val instructions = match.method.implementation?.instructions ?: return@forEach
-            val indicesToRemove = mutableSetOf<Int>()
+            matches.forEach { match ->
+                val instructions = match.method.implementation?.instructions ?: return@forEach
+                val indicesToRemove = mutableSetOf<Int>()
 
-            match.stringMatches
-                .filter { it.string.contains("actionsRandomNsfw", ignoreCase = true) }
-                .forEach { stringMatch ->
-                    for (offset in -10..16) {
-                        val idx = stringMatch.index + offset
-                        if (idx in 0 until instructions.size) {
-                            indicesToRemove.add(idx)
+                match.stringMatches
+                    .filter {
+                        val value = it.string
+                        value.contains("actionsRandomNsfw", ignoreCase = true) ||
+                            value.contains("Random NSFW", ignoreCase = true)
+                    }
+                    .forEach { stringMatch ->
+                        for (offset in -10..16) {
+                            val idx = stringMatch.index + offset
+                            if (idx in 0 until instructions.size) {
+                                indicesToRemove.add(idx)
+                            }
                         }
                     }
-                }
 
-            indicesToRemove
-                .sortedDescending()
-                .forEach { index ->
-                    if (index < instructions.size) {
-                        match.method.removeInstruction(index)
+                indicesToRemove
+                    .sortedDescending()
+                    .forEach { index ->
+                        if (index < instructions.size) {
+                            match.method.removeInstruction(index)
+                        }
                     }
-                }
+            }
         }
     }
 }

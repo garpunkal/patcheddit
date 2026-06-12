@@ -12,34 +12,40 @@ val removeRandomButtonPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
-        val matches = try {
-            subredditHeaderMenuInflateFingerprint.matchAll()
-        } catch (_: Exception) {
-            emptyList()
-        }
+        subredditHeaderMenuInflateFingerprints.forEach { fingerprint ->
+            val matches = try {
+                fingerprint.matchAll()
+            } catch (_: Exception) {
+                emptyList()
+            }
 
-        matches.forEach { match ->
-            val instructions = match.method.implementation?.instructions ?: return@forEach
-            val indicesToRemove = mutableSetOf<Int>()
+            matches.forEach { match ->
+                val instructions = match.method.implementation?.instructions ?: return@forEach
+                val indicesToRemove = mutableSetOf<Int>()
 
-            match.stringMatches
-                .filter { it.string.contains("actionsRandom", ignoreCase = true) }
-                .forEach { stringMatch ->
-                    for (offset in -10..16) {
-                        val idx = stringMatch.index + offset
-                        if (idx in 0 until instructions.size) {
-                            indicesToRemove.add(idx)
+                match.stringMatches
+                    .filter {
+                        val value = it.string
+                        value.contains("actionsRandom", ignoreCase = true) ||
+                            value.equals("Random", ignoreCase = true)
+                    }
+                    .forEach { stringMatch ->
+                        for (offset in -10..16) {
+                            val idx = stringMatch.index + offset
+                            if (idx in 0 until instructions.size) {
+                                indicesToRemove.add(idx)
+                            }
                         }
                     }
-                }
 
-            indicesToRemove
-                .sortedDescending()
-                .forEach { index ->
-                    if (index < instructions.size) {
-                        match.method.removeInstruction(index)
+                indicesToRemove
+                    .sortedDescending()
+                    .forEach { index ->
+                        if (index < instructions.size) {
+                            match.method.removeInstruction(index)
+                        }
                     }
-                }
+            }
         }
     }
 }
