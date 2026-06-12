@@ -12,8 +12,10 @@ val removeSyncUltraSideMenuItemPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
+        val targetMethod = getSyncUltraMenuItemFingerprint.methodOrNull ?: return@execute
+
         // Patch the method that sets up the Sync Ultra sidemenu item
-        getSyncUltraMenuItemFingerprint.method.apply {
+        targetMethod.apply {
             val instructions = implementation!!.instructions
             
             // Find all instructions related to "Get Sync Ultra" sidemenu setup and remove them

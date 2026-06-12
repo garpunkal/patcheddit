@@ -12,8 +12,10 @@ val removeSyncUltraMenuItemPatch = bytecodePatch(
     compatibleWith(*SyncForRedditCompatible)
 
     execute {
+        val targetMethod = syncUltraMenuItemFingerprint.methodOrNull ?: return@execute
+
         // Patch the method that sets up the Sync Ultra menu item
-        syncUltraMenuItemFingerprint.method.apply {
+        targetMethod.apply {
             val instructions = implementation!!.instructions
             
             // Find all instructions related to Sync Ultra menu setup and remove them
