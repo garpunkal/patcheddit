@@ -1,3 +1,11 @@
+## [2.0.1-dev.1](https://github.com/wchill/patcheddit/compare/v2.0.0...v2.0.1-dev.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* Infinity support up to 8.3.4 ([bf1afaf](https://github.com/wchill/patcheddit/commit/bf1afaf50d8c614d7181cdf6cf4a60f67327ed5a))
+* Relay patching broken due to missing extension ([ad9d2c5](https://github.com/wchill/patcheddit/commit/ad9d2c579a0f0fdbbdd85e2894ae57cb1e50c71a))
+
 # [2.0.0](https://github.com/wchill/patcheddit/compare/v1.4.0...v2.0.0) (2026-10-28)
 
 
