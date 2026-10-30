@@ -1,3 +1,10 @@
+## [2.0.1-dev.2](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.1...v2.0.1-dev.2) (2026-10-30)
+
+
+### Bug Fixes
+
+* 403 when loading more comments in Boost ([86cb39f](https://github.com/wchill/patcheddit/commit/86cb39fde6f9aaa06a67bc4f2444b30da45149d0))
+
 ## [2.0.1-dev.1](https://github.com/wchill/patcheddit/compare/v2.0.0...v2.0.1-dev.1) (2026-10-28)
 
 
