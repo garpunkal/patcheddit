@@ -87,7 +87,9 @@ public final class MoreChildrenResponsePatch extends RedditRouteResponseShim {
             response.close();
             try {
                 JSONObject focused = focusedComment(responseJson, childId);
-                flattenThing(focused, emittedIds, emittedFullNames, things);
+                if (focused != null) {
+                    flattenThing(focused, emittedIds, emittedFullNames, things);
+                }
             } catch (JSONException exception) {
                 throw new IOException("Could not parse Reddit focused comment response", exception);
             }
@@ -137,7 +139,7 @@ public final class MoreChildrenResponsePatch extends RedditRouteResponseShim {
         JSONArray children = response.getJSONObject(1)
                 .getJSONObject("data")
                 .getJSONArray("children");
-        if (children.length() == 0) throw new IOException("Reddit returned no focused comment");
+        if (children.length() == 0) return null;
 
         JSONObject focused = children.getJSONObject(0);
         String id = focused.getJSONObject("data").optString("id");
