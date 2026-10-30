@@ -1,3 +1,10 @@
+## [2.0.1-dev.4](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.3...v2.0.1-dev.4) (2026-10-30)
+
+
+### Bug Fixes
+
+* resolve Sync OAuth fingerprints ([c050118](https://github.com/wchill/patcheddit/commit/c050118f67d34c840f86e3b28f12785b111326ef))
+
 ## [2.0.1-dev.3](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.2...v2.0.1-dev.3) (2026-10-30)
 
 

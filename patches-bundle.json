@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-30T07:32:22",
-  "description": "## [2.0.1-dev.3](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.2...v2.0.1-dev.3) (2026-10-30)\n\n\n### Bug Fixes\n\n* preserve descendant replies when loading more comments ([82c4d3d](https://github.com/wchill/patcheddit/commit/82c4d3d70d0880fd33aa67123df480516ae0feb2))",
-  "download_url": "https://github.com/wchill/patcheddit/releases/download/v2.0.1-dev.3/patches-2.0.1-dev.3.mpp",
-  "signature_download_url": "https://github.com/wchill/patcheddit/releases/download/v2.0.1-dev.3/patches-2.0.1-dev.3.mpp.asc",
-  "version": "2.0.1-dev.3"
+  "created_at": "2026-10-30T08:00:33",
+  "description": "## [2.0.1-dev.4](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.3...v2.0.1-dev.4) (2026-10-30)\n\n\n### Bug Fixes\n\n* resolve Sync OAuth fingerprints ([c050118](https://github.com/wchill/patcheddit/commit/c050118f67d34c840f86e3b28f12785b111326ef))",
+  "download_url": "https://github.com/wchill/patcheddit/releases/download/v2.0.1-dev.4/patches-2.0.1-dev.4.mpp",
+  "signature_download_url": "https://github.com/wchill/patcheddit/releases/download/v2.0.1-dev.4/patches-2.0.1-dev.4.mpp.asc",
+  "version": "2.0.1-dev.4"
 }
