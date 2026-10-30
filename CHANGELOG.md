@@ -1,3 +1,10 @@
+## [2.0.2-dev.1](https://github.com/wchill/patcheddit/compare/v2.0.1...v2.0.2-dev.1) (2026-10-30)
+
+
+### Bug Fixes
+
+* Empty responses from reddit no longer throw errors ([a7bb013](https://github.com/wchill/patcheddit/commit/a7bb0131827926c9d3b440da135cd79d917b7c49))
+
 ## [2.0.1](https://github.com/wchill/patcheddit/compare/v2.0.0...v2.0.1) (2026-10-30)
 
 

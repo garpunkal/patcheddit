@@ -92,6 +92,44 @@ public class MoreChildrenResponsePatchTest {
     }
 
     @Test
+    public void returnsAnEmptyExpansionWhenRedditHasNoFocusedComment() throws Exception {
+        List<Request> requests = new ArrayList<>();
+        OkHttpClient client = client(requests, listing());
+
+        try (Response response = client.newCall(request("missing")).execute()) {
+            assertEquals(200, response.code());
+            JSONArray things = new JSONObject(response.body().string())
+                    .getJSONObject("json").getJSONObject("data").getJSONArray("things");
+            assertEquals(0, things.length());
+        }
+        assertEquals(1, requests.size());
+    }
+
+    @Test
+    public void continuesAfterRedditHasNoFocusedComment() throws Exception {
+        List<Request> requests = new ArrayList<>();
+        MoreChildrenResponsePatch shim = new MoreChildrenResponsePatch();
+        String empty = listing();
+        String present = listing(comment("present", "parent"));
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(chain -> shim.shimResponse(chain, chain.request()))
+                .addInterceptor(chain -> {
+                    requests.add(chain.request());
+                    return response(chain.request(), 200,
+                            requests.size() == 1 ? empty : present);
+                }).build();
+
+        try (Response response = client.newCall(request("missing,present")).execute()) {
+            JSONArray things = new JSONObject(response.body().string())
+                    .getJSONObject("json").getJSONObject("data").getJSONArray("things");
+            assertEquals(1, things.length());
+            assertEquals("present",
+                    things.getJSONObject(0).getJSONObject("data").getString("id"));
+        }
+        assertEquals(2, requests.size());
+    }
+
+    @Test
     public void propagatesTransportFailureInsteadOfReturningAPartialSuccessfulExpansion() throws Exception {
         List<Request> requests = new ArrayList<>();
         MoreChildrenResponsePatch shim = new MoreChildrenResponsePatch();
@@ -136,10 +174,10 @@ public class MoreChildrenResponsePatchTest {
                 .code(code).message("fixture").body(ResponseBody.create(json, JSON)).build();
     }
 
-    private static String listing(JSONObject comment) throws JSONException {
+    private static String listing(JSONObject... comments) throws JSONException {
         return new JSONArray().put(new JSONObject()).put(new JSONObject()
                 .put("kind", "Listing")
-                .put("data", new JSONObject().put("children", new JSONArray().put(comment))))
+                .put("data", new JSONObject().put("children", new JSONArray(List.of(comments)))))
                 .toString();
     }
 
