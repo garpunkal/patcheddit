@@ -1,3 +1,10 @@
+## [2.0.1-dev.5](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.4...v2.0.1-dev.5) (2026-10-30)
+
+
+### Bug Fixes
+
+* BaconReader redirect uri losing its query parameter name ([3cbf80c](https://github.com/wchill/patcheddit/commit/3cbf80cfbc966625bd199179874ff3f8cc56aec8))
+
 ## [2.0.1-dev.4](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.3...v2.0.1-dev.4) (2026-10-30)
 
 
