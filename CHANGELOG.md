@@ -1,3 +1,10 @@
+## [2.0.1-dev.3](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.2...v2.0.1-dev.3) (2026-10-30)
+
+
+### Bug Fixes
+
+* preserve descendant replies when loading more comments ([82c4d3d](https://github.com/wchill/patcheddit/commit/82c4d3d70d0880fd33aa67123df480516ae0feb2))
+
 ## [2.0.1-dev.2](https://github.com/wchill/patcheddit/compare/v2.0.1-dev.1...v2.0.1-dev.2) (2026-10-30)
 
 
