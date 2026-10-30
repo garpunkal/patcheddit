@@ -87,7 +87,7 @@ public final class MoreChildrenResponsePatch extends RedditRouteResponseShim {
             response.close();
             try {
                 JSONObject focused = focusedComment(responseJson, childId);
-                flattenThing(focused, targetIds, emittedIds, emittedFullNames, things);
+                flattenThing(focused, emittedIds, emittedFullNames, things);
             } catch (JSONException exception) {
                 throw new IOException("Could not parse Reddit focused comment response", exception);
             }
@@ -149,34 +149,33 @@ public final class MoreChildrenResponsePatch extends RedditRouteResponseShim {
 
     private static void flattenThing(
             JSONObject thing,
-            Set<String> targetIds,
             Set<String> emittedIds,
             Set<String> emittedFullNames,
             JSONArray output
     ) throws JSONException {
-        String kind = thing.optString("kind");
-        JSONObject data = thing.optJSONObject("data");
-        if (data == null) return;
+        String kind = thing.getString("kind");
+        JSONObject data = thing.getJSONObject("data");
 
         if ("t1".equals(kind)) {
             Object replies = data.opt("replies");
-            String id = data.optString("id");
-            if (targetIds.contains(id) && emittedIds.add(id)) {
+            String id = data.getString("id");
+            if (emittedIds.add(id)) {
+                // morechildren is flat, but a focused listing includes complete reply subtrees.
                 data.put("replies", "");
                 output.put(thing);
-                String fullName = data.optString("name");
-                if (!fullName.isEmpty()) emittedFullNames.add(fullName);
+                emittedFullNames.add(data.getString("name"));
             }
-            flattenReplies(replies, targetIds, emittedIds, emittedFullNames, output);
+            flattenReplies(replies, emittedIds, emittedFullNames, output);
         } else if ("more".equals(kind)
                 && emittedFullNames.contains(data.optString("parent_id"))) {
             output.put(thing);
+        } else {
+            throw new JSONException("Unexpected focused comment kind or parent: " + kind);
         }
     }
 
     private static void flattenReplies(
             Object replies,
-            Set<String> targetIds,
             Set<String> emittedIds,
             Set<String> emittedFullNames,
             JSONArray output
@@ -189,7 +188,6 @@ public final class MoreChildrenResponsePatch extends RedditRouteResponseShim {
         for (int i = 0; i < children.length(); i++) {
             flattenThing(
                     children.getJSONObject(i),
-                    targetIds,
                     emittedIds,
                     emittedFullNames,
                     output
