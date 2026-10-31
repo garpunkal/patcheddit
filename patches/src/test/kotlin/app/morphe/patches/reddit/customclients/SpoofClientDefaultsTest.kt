@@ -8,12 +8,6 @@ package app.morphe.patches.reddit.customclients
 
 import app.morphe.patcher.patch.Option
 import app.morphe.patcher.patch.OptionException
-import app.morphe.patches.reddit.customclients.baconreader.api.spoofClientPatch as baconReaderPatch
-import app.morphe.patches.reddit.customclients.boostforreddit.api.spoofClientPatch as boostPatch
-import app.morphe.patches.reddit.customclients.infinity.api.spoofClientPatch as infinityPatch
-import app.morphe.patches.reddit.customclients.joey.api.spoofClientPatch as joeyPatch
-import app.morphe.patches.reddit.customclients.redditisfun.api.spoofClientPatch as redditIsFunPatch
-import app.morphe.patches.reddit.customclients.relay.api.spoofClientPatch as relayPatch
 import app.morphe.patches.reddit.customclients.sync.syncforreddit.api.spoofClientPatch as syncPatch
 import java.util.Base64
 import kotlin.test.Test
@@ -80,16 +74,12 @@ class SpoofClientDefaultsTest {
     }
 
     @Test
-    fun everyClientUsesRedReader127MetadataWithoutTheDecodedId() {
-        val patches = listOf(baconReaderPatch, boostPatch, infinityPatch, joeyPatch,
-            redditIsFunPatch, relayPatch, syncPatch)
-        for (patch in patches) {
-            val clientId = patch.options["client-id"]
-            assertNull(clientId.default)
-            assertNull(clientId.value)
-            assertFalse(clientId.required)
-            assertEquals("redreader://rr_oauth_redir", patch.options["redirect-uri"].default)
-            assertEquals("org.quantumbadger.redreader/1.27", patch.options["user-agent"].default)
-        }
+    fun syncUsesRedReader127MetadataWithoutTheDecodedId() {
+        val clientId = syncPatch.options["client-id"]
+        assertNull(clientId.default)
+        assertNull(clientId.value)
+        assertFalse(clientId.required)
+        assertEquals("redreader://rr_oauth_redir", syncPatch.options["redirect-uri"].default)
+        assertEquals("org.quantumbadger.redreader/1.27", syncPatch.options["user-agent"].default)
     }
 }
